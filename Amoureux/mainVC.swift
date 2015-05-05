@@ -126,7 +126,7 @@ class mainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if resultsHasImageArray.count > 0 && resultsHasImageArray[indexPath.row] == "yes" {
+        if resultsHasImageArray[indexPath.row] == "yes" {
             
             return self.view.frame.size.width - 10
             
@@ -146,29 +146,23 @@ class mainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         cell.tweetImg.hidden = true
         
-        if resultsNameArray.count > 0{
-            cell.profileLbl.text = self.resultsNameArray[indexPath.row]
-        }
-        if resultsTweetArray.count > 0{
-            cell.messageTxt.text = self.resultsTweetArray[indexPath.row]
-        }
+        cell.profileLbl.text = self.resultsNameArray[indexPath.row]
+        cell.messageTxt.text = self.resultsTweetArray[indexPath.row]
         
-        if resulltsImageFiles.count > 0{
-            resulltsImageFiles[indexPath.row].getDataInBackgroundWithBlock {
-                (imageData:NSData!, error:NSError!) -> Void in
+        resulltsImageFiles[indexPath.row].getDataInBackgroundWithBlock {
+            (imageData:NSData!, error:NSError!) -> Void in
+            
+            
+            if error == nil {
                 
-                
-                if error == nil {
-                    
-                    let image = UIImage(data: imageData)
-                    cell.imgView.image = image
-                    
-                }
+                let image = UIImage(data: imageData)
+                cell.imgView.image = image
                 
             }
+            
         }
         
-        if resultsHasImageArray.count > 0 && resultsHasImageArray[indexPath.row] == "yes" {
+        if resultsHasImageArray[indexPath.row] == "yes" {
             
             let theWidth = view.frame.size.width
             
