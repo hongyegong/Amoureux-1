@@ -141,11 +141,6 @@ class NewChatViewController: UIViewController, UITableViewDataSource, UITableVie
         retrieveMessages()
     }
     
-    @IBAction func backBtn(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
     
     func retrieveMessages() {
         var group:[String] = []
